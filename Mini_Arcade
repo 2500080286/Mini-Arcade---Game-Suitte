@@ -1,0 +1,137 @@
+import random
+
+
+# -------------------------------
+# Game 1: Number Guessing Game
+# -------------------------------
+def number_guessing():
+    print("\nNumber Guessing Game")
+    number = random.randint(1, 100)
+    attempts = 0
+
+    while True:
+        try:
+            guess = int(input("Enter your guess (1-100): "))
+            attempts += 1
+
+            if guess < 1 or guess > 100:
+                print("Please enter a number between 1 and 100.")
+                continue
+
+            if guess < number:
+                print("Too low!")
+            elif guess > number:
+                print("Too high!")
+            else:
+                print(f"Correct! You guessed it in {attempts} attempts.")
+                break
+
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+
+
+# -------------------------------
+# Game 2: Rock Paper Scissors
+# -------------------------------
+def rock_paper_scissors():
+    print("\nRock Paper Scissors")
+
+    choices = ["rock", "paper", "scissors"]
+
+    while True:
+        user = input("Enter rock, paper, or scissors: ").lower()
+
+        if user not in choices:
+            print("Invalid choice! Try again.")
+            continue
+
+        computer = random.choice(choices)
+
+        print(f"Computer chose: {computer}")
+
+        if user == computer:
+            print("It's a tie!")
+        elif (
+            (user == "rock" and computer == "scissors")
+            or (user == "paper" and computer == "rock")
+            or (user == "scissors" and computer == "paper")
+        ):
+            print("You win!")
+        else:
+            print("You lose!")
+
+        break
+
+
+# -------------------------------
+# Game 3: Quiz Game
+# -------------------------------
+def quiz_game():
+    print("\nQuiz Game")
+
+    score = 0
+
+    questions = [
+        {
+            "question": "What is the capital of India?",
+            "answer": "delhi",
+        },
+        {
+            "question": "2 + 2 = ?",
+            "answer": "4",
+        },
+        {
+            "question": "Which language is used for Python?",
+            "answer": "programming",
+        },
+    ]
+
+    for q in questions:
+        user_answer = input(q["question"] + " ").strip().lower()
+
+        if user_answer == q["answer"]:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! Correct answer: {q['answer']}")
+
+    print(f"\nYour Score: {score}/{len(questions)}")
+
+
+# -------------------------------
+# Main Menu
+# -------------------------------
+def main():
+    while True:
+        print("\n==============================")
+        print("MINI ARCADE GAME SUITE")
+        print("==============================")
+        print("1. Number Guessing Game")
+        print("2. Rock Paper Scissors")
+        print("3. Quiz Game")
+        print("4. Exit")
+
+        choice = input("\nEnter your choice: ").strip()
+
+        if choice == "1":
+            number_guessing()
+
+        elif choice == "2":
+            rock_paper_scissors()
+
+        elif choice == "3":
+            quiz_game()
+
+        elif choice == "4":
+            print("\nExiting... Thanks for playing!")
+            break
+
+        else:
+            print("Invalid choice! Please try again.")
+
+
+# -------------------------------
+# Entry Point
+# -------------------------------
+if __name__ == "__main__":
+    main()
